@@ -1,0 +1,28 @@
+{
+  "name": "node-mojangson",
+  "version": "0.0.0",
+  "description": "A mojangson parser written in node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rom1504/node-mojangson.git"
+  },
+  "keywords": [
+    "mojangson"
+  ],
+  "author": "Romain Beaumont <romain.rom1@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rom1504/node-mojangson/issues"
+  },
+  "devDependencies": {
+    "mocha": "~2.2.1",
+    "jison": "~0.4.2"
+  },
+  "scripts": {
+   "prepublish": "jison grammar.jison"
+  }
+}
