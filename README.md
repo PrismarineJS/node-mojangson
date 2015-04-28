@@ -1,5 +1,5 @@
 # node-mojangson
-[![NPM version](https://badge.fury.io/js/node-mojangson.png)](http://badge.fury.io/js/node-mojangson) [![Build Status](https://circleci.com/gh/rom1504/node-mojangson.png?style=shield)](https://circleci.com/gh/rom1504/node-mojangson)
+[![NPM version](https://badge.fury.io/js/node-mojangson.svg)](http://badge.fury.io/js/node-mojangson) [![Build Status](https://circleci.com/gh/rom1504/node-mojangson.svg?style=shield)](https://circleci.com/gh/rom1504/node-mojangson)
 
 node-mojangson is a mojangson parser.
 
