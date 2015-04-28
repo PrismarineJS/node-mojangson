@@ -23,6 +23,7 @@
     "jison": "~0.4.2"
   },
   "scripts": {
-   "prepublish": "jison grammar.jison"
+   "prepublish": "jison grammar.jison",
+    "test": "mocha --reporter spec"
   }
 }

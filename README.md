@@ -1,4 +1,5 @@
 # node-mojangson
+[![NPM version](https://badge.fury.io/js/node-mojangson.png)](http://badge.fury.io/js/node-mojangson) [![Build Status](https://circleci.com/gh/rom1504/node-mojangson.png?style=shield)](https://circleci.com/gh/rom1504/node-mojangson)
 
 node-mojangson is a mojangson parser.
 
@@ -24,6 +25,6 @@ var mojangson=require("mojangson");
 console.log(mojangson.parse("{mykey:myvalue}"));
 ```
 
-The provided method mojangson.parse return a json corresponding to the mojangson passed in input.
+The provided method mojangson.parse return a javascript object corresponding to the mojangson passed in input.
 
 
