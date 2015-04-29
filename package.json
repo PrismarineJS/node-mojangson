@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "description": "A mojangson parser written in node.js",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha --reporter spec"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/rom1504/node-mojangson.git"
