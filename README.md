@@ -28,3 +28,17 @@ console.log(mojangson.parse("{mykey:myvalue}"));
 The provided method mojangson.parse return a javascript object corresponding to the mojangson passed in input.
 
 
+## History
+
+### 0.2.0
+
+* Rename npm package to mojangson
+* fix trailing comma in arrays
+
+### 0.1.1
+
+* better error displaying
+
+### 0.1
+
+* First release, basic functionnality
