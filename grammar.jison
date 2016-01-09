@@ -41,6 +41,7 @@ liste_jarray_value:
 liste_jvalue:
 	jvalue 'COMMA' liste_jvalue {$3.unshift($1);$$=$3}
 	| jvalue	 { $$=[$1] }
+  | {$$=[]}
 ;
 
 string:
