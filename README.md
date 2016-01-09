@@ -1,5 +1,5 @@
 # node-mojangson
-[![NPM version](https://badge.fury.io/js/node-mojangson.svg)](http://badge.fury.io/js/node-mojangson) [![Build Status](https://circleci.com/gh/rom1504/node-mojangson.svg?style=shield)](https://circleci.com/gh/rom1504/node-mojangson)
+[![NPM version](https://badge.fury.io/js/mojangson.svg)](http://badge.fury.io/js/mojangson) [![Build Status](https://circleci.com/gh/rom1504/node-mojangson.svg?style=shield)](https://circleci.com/gh/rom1504/node-mojangson)
 
 node-mojangson is a mojangson parser.
 
@@ -29,6 +29,10 @@ The provided method mojangson.parse return a javascript object corresponding to 
 
 
 ## History
+
+### 0.2.1
+
+* fix state conflict due to recent trailing comma fix
 
 ### 0.2.0
 
