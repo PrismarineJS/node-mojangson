@@ -25,7 +25,8 @@ describe("mojangson",function(){
     '],},},}',
       {id:1,Damage:0, Count:1,tag:{display:{Name:"§r§6Class: Civilian",Lore:["§6Last Killed: None","§6Last Killer: None","§6Rank: §aNovice-III","§6§6Elo Rating: 1000"]}}}],
     ["[1,2,3]",[1,2,3]],
-    ["[1,2,3,]",[1,2,3]]
+    ["[1,2,3,]",[1,2,3]],
+    ['[]',[]],
   ];
   data.forEach(function(a){
     it("should be equal",function(){

@@ -28,20 +28,21 @@ main:jvalue 'EOF' {return $1};
 jarray:'LEFTC' liste_jarray 'RIGHTC' {$$=$2};
 
 liste_jarray:
-  liste_jarray_value {$$=$1}
+  {$$=[]}
+  | liste_jarray_value {$$=$1}
   | liste_jvalue {$$=$1}
 ;
 
 liste_jarray_value:
   'POSITIVE_INTEGER' 'DP' jvalue 'COMMA' liste_jarray_value {$5[parseInt($1)]=$3; $$=$5}
+  | 'POSITIVE_INTEGER' 'DP' jvalue	'COMMA' {var a={};a[parseInt($1)]=$3;$$=a }
   | 'POSITIVE_INTEGER' 'DP' jvalue	 {var a={};a[parseInt($1)]=$3;$$=a }
-  | {$$={}}
 ;
 
 liste_jvalue:
 	jvalue 'COMMA' liste_jvalue {$3.unshift($1);$$=$3}
+	| jvalue	'COMMA' { $$=[$1] }
 	| jvalue	 { $$=[$1] }
-  | {$$=[]}
 ;
 
 string:
