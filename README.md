@@ -30,6 +30,10 @@ The provided method mojangson.parse return a javascript object corresponding to 
 
 ## History
 
+### 0.2.2
+
+* disable jison cli to make mojangson compatible with browserify
+
 ### 0.2.1
 
 * fix state conflict due to recent trailing comma fix
