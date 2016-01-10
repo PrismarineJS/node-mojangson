@@ -17,10 +17,10 @@
   },
   "devDependencies": {
     "mocha": "~2.2.1",
-    "jison": "~0.4.2"
+    "jison": "deathcap/jison#modulemain"
   },
   "scripts": {
-   "prepublish": "node jison_generate.js",
+   "prepublish": "jison grammar.jison --moduleMain 'function (){}'",
     "test": "mocha --reporter spec"
   }
 }
