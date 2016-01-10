@@ -5,6 +5,7 @@ var fs = require('fs');
 var path = require('path');
 
 var options = {
+  mainModule: function() {}
 };
 
 var grammar = fs.readFileSync(path.join(__dirname, 'grammar.jison'), 'utf8');
