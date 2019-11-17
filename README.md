@@ -9,8 +9,10 @@ Mojangson is mojang's variant of json. It is basically json with the following c
  * array can be indexed (example : `[0:"v1",1:"v2",2:"v3"]`)
  * array and object can have trailing comma (example : `[5,4,3,]` and `{"a":5,"b":6,}`)
  * there can be string without quote (example : `{mykey:myvalue}`)
- * numbers can be suffixed by b, s, l, f or the same in upper case (example : `{number:5b}`)
+ * numbers can be suffixed by b, s, l, f, d, i or the same in upper case (example : `{number:5b}`)
  * mojangson stays a superset of json : every json is a mojangson
+
+ Reference https://minecraft.gamepedia.com/Commands#Data_tags
 
 ## Parser
 This parser is build using jison.

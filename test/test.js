@@ -9,6 +9,8 @@ describe("mojangson",function(){
     ['{key:"va,lue"}', {key:"va,lue"}],
     ['{k1:v1,k2:v2}', {k1:"v1", k2:"v2"}],
     ['{number:0s}', {number:0}],
+    ['{number:35.765d}', {number:35.765}],
+    ['{number:35i}', {number:35}],
     ['{number:123b}', {number:123}],
     ['{nest:{}}', {nest:{}}],
     ['{nest:{nest:{}}}', {nest:{nest:{}}}],
