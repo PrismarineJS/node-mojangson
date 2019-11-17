@@ -10,6 +10,8 @@ describe("mojangson",function(){
     ['{k1:v1,k2:v2}', {k1:"v1", k2:"v2"}],
     ['{number:0s}', {number:0}],
     ['{number:123b}', {number:123}],
+    ['{number:123.0f}', {number:123}],
+    ['{number:123.0d}', {number:123}],
     ['{nest:{}}', {nest:{}}],
     ['{nest:{nest:{}}}', {nest:{nest:{}}}],
     ["{id:35,Damage:5,Count:2,tag:{display:{Name:Testing}}}", {id:35,Damage:5,Count:2,tag:{display:{Name:"Testing"}}}],

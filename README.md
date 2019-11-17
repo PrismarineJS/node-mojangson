@@ -30,6 +30,10 @@ The provided method mojangson.parse return a javascript object corresponding to 
 
 ## History
 
+### 0.2.4
+
+* add parsing for doubles
+
 ### 0.2.3
 
 * fix release about grammar.js still containing the cli

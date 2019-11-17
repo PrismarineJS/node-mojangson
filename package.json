@@ -1,6 +1,6 @@
 {
   "name": "mojangson",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A mojangson parser written in node.js",
   "main": "index.js",
   "repository": {
@@ -20,7 +20,7 @@
     "jison-plus": "^2.0.0"
   },
   "scripts": {
-   "prepublish": "jison-plus grammar.jison --moduleMain 'function (){}'",
+    "prepublish": "jison-plus grammar.jison --moduleMain 'function (){}'",
     "test": "mocha --reporter spec"
   }
 }

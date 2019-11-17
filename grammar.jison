@@ -11,7 +11,7 @@
 "false"       return 'FALSE';
 "true"		return 'TRUE' ;
 "null"	     return 'NULL';
-'-'?([1-9][0-9]*|'0')('.'[0-9]+)?(['e''E']['+''-']?[0-9]+)?[bslfBSLF] return 'FLOATSUFFIX';
+'-'?([1-9][0-9]*|'0')('.'[0-9]+)?(['e''E']['+''-']?[0-9]+)?[bslfdBSLFD] return 'FLOATSUFFIX';
 [1-9][0-9]*|'0' return 'POSITIVE_INTEGER';
 '-'?([1-9][0-9]*|'0')('.'[0-9]+)?(['e''E']['+''-']?[0-9]+)? return 'FLOAT';
 '"'([']|[^'"''\\']|('\\'['"' '\\' '/' 'b' 'f' 'n' 'r' 't' 'u']))*'"' return 'STRING';
