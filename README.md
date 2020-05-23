@@ -23,8 +23,8 @@ See the [grammar](grammar.jison) and the examples in the [test](test/test.js) fo
 Usage example :
 
 ```js
-var mojangson=require("mojangson");
-console.log(mojangson.parse("{mykey:myvalue}"));
+var mojangson = require('./')
+console.log(mojangson.parse('{mykey:myvalue}'))
 ```
 
 The provided method mojangson.parse return a javascript object corresponding to the mojangson passed in input.

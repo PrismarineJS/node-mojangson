@@ -16,11 +16,15 @@
     "url": "https://github.com/rom1504/node-mojangson/issues"
   },
   "devDependencies": {
-    "mocha": "~2.2.1",
-    "jison-plus": "^2.0.0"
+    "jison": "^0.4.18",
+    "mocha": "^7.1.2",
+    "standard": "^14.3.4"
   },
   "scripts": {
-    "prepublish": "jison-plus grammar.jison --moduleMain 'function (){}'",
-    "test": "mocha --reporter spec"
+    "prepublish": "jison grammar.jison --moduleMain 'function (){}'",
+    "test": "mocha --reporter spec",
+    "pretest": "npm run lint",
+    "lint": "standard",
+    "fix": "standard --fix"
   }
 }

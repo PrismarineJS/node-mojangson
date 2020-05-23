@@ -35,8 +35,8 @@ liste_jarray:
 
 liste_jarray_value:
   'POSITIVE_INTEGER' 'DP' jvalue 'COMMA' liste_jarray_value {$5[parseInt($1)]=$3; $$=$5}
-  | 'POSITIVE_INTEGER' 'DP' jvalue	'COMMA' {var a={};a[parseInt($1)]=$3;$$=a }
-  | 'POSITIVE_INTEGER' 'DP' jvalue	 {var a={};a[parseInt($1)]=$3;$$=a }
+  | 'POSITIVE_INTEGER' 'DP' jvalue	'COMMA' {var a=[];a[parseInt($1)]=$3;$$=a }
+  | 'POSITIVE_INTEGER' 'DP' jvalue	 {var a=[];a[parseInt($1)]=$3;$$=a }
 ;
 
 liste_jvalue:
