@@ -5,7 +5,7 @@ module.exports = {
     try {
       return parser.parse(text)
     } catch (e) {
-      console.log("Error parsing text '" + text + "'")
+      e.message = "Error parsing text '" + text + "'"
       throw e
     }
   }
