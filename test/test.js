@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
-var assert = require('assert')
-var mojangson = require('../')
+const assert = require('assert')
+const mojangson = require('../')
 
 describe('mojangson', function () {
   var data = [
@@ -33,8 +33,11 @@ describe('mojangson', function () {
     ['[]', []]
   ]
   data.forEach(function (a) {
-    it('should be equal', function () {
+    it('should be equal (jison)', function () {
       assert.deepStrictEqual(mojangson.parse(a[0]), a[1])
+    })
+    it('should be equal (nearley)', function () {
+      assert.deepStrictEqual(mojangson.parse2(a[0]), a[1])
     })
   })
 })

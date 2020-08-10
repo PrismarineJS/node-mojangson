@@ -21,10 +21,18 @@
     "standard": "^14.3.4"
   },
   "scripts": {
-    "prepublish": "jison grammar.jison --moduleMain 'function (){}'",
+    "prepublish": "jison grammar.jison --moduleMain 'function (){}' && nearleyc grammar.ne -o grammar_ne.js",
     "test": "mocha --reporter spec",
     "pretest": "npm run lint",
     "lint": "standard",
     "fix": "standard --fix"
+  },
+  "dependencies": {
+    "nearley": "^2.19.5"
+  },
+  "standard": {
+    "ignore": [
+      "grammar_ne.js"
+    ]
   }
 }
