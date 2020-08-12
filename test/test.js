@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
-var assert = require('assert')
-var mojangson = require('../')
+const assert = require('assert')
+const mojangson = require('../')
 
 describe('mojangson', function () {
   var data = [

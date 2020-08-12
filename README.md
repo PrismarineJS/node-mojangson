@@ -15,15 +15,15 @@ Mojangson is mojang's variant of json. It is basically json with the following c
  Reference https://minecraft.gamepedia.com/Commands#Data_tags
 
 ## Parser
-This parser is build using jison.
+This parser is build using nearley.
 
-See the [grammar](grammar.jison) and the examples in the [test](test/test.js) for more information.
+See the [grammar](grammar.ne) and the examples in the [test](test/test.js) for more information.
 
 ## Usage
 Usage example :
 
 ```js
-var mojangson = require('./')
+const mojangson = require('mojangson')
 console.log(mojangson.parse('{mykey:myvalue}'))
 ```
 
