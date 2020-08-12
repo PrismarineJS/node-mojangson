@@ -32,6 +32,10 @@ The provided method mojangson.parse return a javascript object corresponding to 
 
 ## History
 
+### 1.1.0
+
+* switch to nearley parser for a better handling for mojangson (thanks @Karang)
+
 ### 1.0.0
 
 * stop printing error
