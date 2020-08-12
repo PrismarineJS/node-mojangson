@@ -33,11 +33,8 @@ describe('mojangson', function () {
     ['[]', []]
   ]
   data.forEach(function (a) {
-    it('should be equal (jison)', function () {
+    it('should be equal', function () {
       assert.deepStrictEqual(mojangson.parse(a[0]), a[1])
-    })
-    it('should be equal (nearley)', function () {
-      assert.deepStrictEqual(mojangson.parse2(a[0]), a[1])
     })
   })
 })

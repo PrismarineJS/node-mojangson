@@ -4,11 +4,11 @@ MAIN -> _ JVALUE _ {% (d) => d[1] %}
 
 JVALUE -> "true"  {% (d) => true %}
         | "false" {% (d) => false %}
-		    | JOBJECT {% (d) => d[0] %}
-		    | "'" _ JOBJECT _ "'" {% (d) => d[2] %}
-		    | JARRAY  {% (d) => d[0] %}
-		    | STRING  {% (d) => d[0] %}
-		    | "null"  {% (d) => null %}
+        | JOBJECT {% (d) => d[0] %}
+        | "'" _ JOBJECT _ "'" {% (d) => d[2] %}
+        | JARRAY  {% (d) => d[0] %}
+        | STRING  {% (d) => d[0] %}
+        | "null"  {% (d) => null %}
 
 JOBJECT -> "{" _ "}" {% (d) => { return {} } %}
          | "{" _ PAIR ( _ "," _ PAIR):* (_ ","):? "}" {% extractObject %}
@@ -20,7 +20,7 @@ JARRAY -> "[" _ "]" {% (d) => [] %}
 PAIR -> STRING _ ":" _ JVALUE {% (d) => [d[0], d[4]] %}
 
 STRING -> "\"" [^\\"]:+ "\"" {% (d) => parseValue(d[1].join('')) %}
-        | [^\"\'}\]:,]:+ {% (d) => parseValue(d[0].join('')) %} 
+        | [^\"\'}\]:,\s]:+ {% (d) => parseValue(d[0].join('')) %} 
 
 @{%
 
