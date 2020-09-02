@@ -30,7 +30,8 @@ describe('mojangson', function () {
     { id: 1, Damage: 0, Count: 1, tag: { display: { Name: '§r§6Class: Civilian', Lore: ['§6Last Killed: None', '§6Last Killer: None', '§6Rank: §aNovice-III', '§6§6Elo Rating: 1000'] } } }],
     ['[1,2,3]', [1, 2, 3]],
     ['[1,2,3,]', [1, 2, 3]],
-    ['[]', []]
+    ['[]', []],
+    ['{id:"minecraft:yellow_shulker_box",Count:1b,tag:{BlockEntityTag:{CustomName:"Stacked Totems",x:0,y:0,z:0,id:"minecraft:shulker_box",Lock:""},display:{Name:"Stacked Totems"}},Damage:0s}', { id: 'minecraft:yellow_shulker_box', Count: 1, tag: { BlockEntityTag: { CustomName: 'Stacked Totems', x: 0, y: 0, z: 0, id: 'minecraft:shulker_box', Lock: '' }, display: { Name: 'Stacked Totems' } }, Damage: 0 }]
   ]
   data.forEach(function (a) {
     it('should be equal', function () {

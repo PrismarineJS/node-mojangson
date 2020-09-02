@@ -19,7 +19,7 @@ JARRAY -> "[" _ "]" {% (d) => [] %}
 
 PAIR -> STRING _ ":" _ JVALUE {% (d) => [d[0], d[4]] %}
 
-STRING -> "\"" [^\\"]:+ "\"" {% (d) => parseValue(d[1].join('')) %}
+STRING -> "\"" [^\\"]:* "\"" {% (d) => parseValue(d[1].join('')) %}
         | [^\"\'}\]:,\s]:+ {% (d) => parseValue(d[0].join('')) %} 
 
 @{%
