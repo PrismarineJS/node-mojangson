@@ -1,6 +1,6 @@
 {
   "name": "mojangson",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A mojangson parser written in node.js",
   "main": "index.js",
   "repository": {
