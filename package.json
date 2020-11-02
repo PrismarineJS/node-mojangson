@@ -16,7 +16,7 @@
     "url": "https://github.com/rom1504/node-mojangson/issues"
   },
   "devDependencies": {
-    "mocha": "^7.1.2",
+    "mocha": "^8.2.0",
     "standard": "^16.0.1"
   },
   "scripts": {
