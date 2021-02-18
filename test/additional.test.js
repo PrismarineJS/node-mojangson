@@ -6,7 +6,7 @@ const mojangson = require('../')
 
 const tests = ['test001']
 
-describe('mojangson', function () {
+describe('additional', function () {
   const data = []
   for (const test of tests) {
     const text = fs.readFileSync(`test/${test}.txt`, 'utf-8')
