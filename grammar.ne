@@ -59,7 +59,7 @@ function extractObject(d) {
   for (let i in d[3]) {
     extractPair(d[3][i][3], output)
   }
-  return output
+  return { type: 'compound', value: output }
 }
 
 function extractArray (d) {
@@ -67,7 +67,7 @@ function extractArray (d) {
   for (let i in d[3]) {
     output.push(d[3][i][3])
   }
-  return output
+  return { type: 'list', value: output }
 }
 
 function extractArrayPair (d) {
@@ -76,7 +76,7 @@ function extractArrayPair (d) {
   for (let i in d[3]) {
     extractPair(d[3][i][3], output)
   }
-  return output
+  return { type: 'list', value: output }
 }
 
 %}
