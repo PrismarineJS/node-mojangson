@@ -32,6 +32,7 @@ function stringify (val) {
     }
     return `{${str.join(',')}}`
   } else if (type === 'list') {
+    if (!Array.isArray(value)) return '[]'
     const arrayElements = getArrayValues(value)
     return `[${arrayElements}]`
   } else if (type === 'byteArray' || type === 'intArray' || type === 'longArray') {
@@ -55,7 +56,7 @@ function getArrayValues ({ value: arr, type }) {
   const hasMissingEl = hasMissingElements(arr)
   const str = []
   // add nullable length that way [] is pased as []
-  for (let i = 0; i < (arr?.length || 0); i++) {
+  for (let i = 0; i < arr.length; i++) {
     let curr = arr[i]
     if (curr !== undefined) {
       curr = stringify({ value: curr, type })
