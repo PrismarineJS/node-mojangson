@@ -68,7 +68,7 @@ function getArrayValues ({ value: arr, type }) {
 }
 
 function hasMissingElements (arr) {
-  for (let i = 0; i < (arr?.length || 0); i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (arr[i] === undefined) return true
   }
   return false
