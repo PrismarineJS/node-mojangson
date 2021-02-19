@@ -2,25 +2,24 @@
 
 MAIN -> _ JVALUE _ {% (d) => d[1] %}
 
-JVALUE -> "true"  {% (d) => true %}
-        | "false" {% (d) => false %}
-        | JOBJECT {% (d) => d[0] %}
+JVALUE -> JOBJECT {% (d) => d[0] %}
         | "'" _ JOBJECT _ "'" {% (d) => d[2] %}
         | JARRAY  {% (d) => d[0] %}
         | STRING  {% (d) => d[0] %}
         | "null"  {% (d) => null %}
 
-JOBJECT -> "{" _ "}" {% (d) => { return {} } %}
+JOBJECT -> "{" _ "}" {% (d) => { return { type: 'compound', value: {} } } %}
          | "{" _ PAIR ( _ "," _ PAIR):* (_ ","):? "}" {% extractObject %}
 
-JARRAY -> "[" _ "]" {% (d) => [] %}
+JARRAY -> "[" _ "]" {% (d) => { return { type: 'list', value: {} } } %}
+        | "[" _ [BIL] _ ";" _ JVALUE ( _ "," _ JVALUE):* (_ ","):? _ "]" {% extractTypedArray %}
         | "[" _ JVALUE ( _ "," _ JVALUE):* (_ ","):? _ "]" {% extractArray %}
         | "[" _ PAIR ( _ "," _ PAIR):* (_ ","):? _ "]" {% extractArrayPair %}
 
 PAIR -> STRING _ ":" _ JVALUE {% (d) => [d[0].value, d[4]] %}
 
 STRING -> "\"" [^\\"]:* "\"" {% (d) => parseValue(d[1].join('')) %}
-        | [^\"\'}\]:,\s]:+ {% (d) => parseValue(d[0].join('')) %} 
+        | [^\"\'}\]:;,\s]:+ {% (d) => parseValue(d[0].join('')) %} 
 
 @{%
 
@@ -28,6 +27,8 @@ STRING -> "\"" [^\\"]:* "\"" {% (d) => parseValue(d[1].join('')) %}
 // It is more efficient to have the parser extract string
 // and post-process it to retrieve numbers
 function parseValue (str) {
+  if (str === 'true') return { type: 'boolean', value: true }
+  if (str === 'false') return { type: 'boolean', value: false }
   const suffixes = "bslfdi"
   const suffixToType = { 'b': 'byte', 's': 'short', 'l': 'long', 'f': 'float', 'd': 'double', 'i': 'int' }
   const lastC = str.charAt(str.length - 1).toLowerCase()
@@ -60,6 +61,15 @@ function extractObject(d) {
     extractPair(d[3][i][3], output)
   }
   return { type: 'compound', value: output }
+}
+
+function extractTypedArray (d) {
+  let output = [d[6]]
+  for (let i in d[7]) {
+    output.push(d[7][i][3])
+  }
+  const type = {'B': 'byteArray', 'I': 'intArray', 'L': 'longArray'}[d[2]]
+  return { type, value: { type: output[0].type, value: output.map(x => x.value) } }
 }
 
 function extractArray (d) {
