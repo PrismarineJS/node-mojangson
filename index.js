@@ -18,8 +18,7 @@ function simplify (data) {
 }
 
 function stringify (val) {
-  if (typeof val === 'object' && Array.isArray(val) && val.length === 0) return '[]'
-  else if (typeof val === 'object' && Object.keys(val).length === 0) return '{}'
+  // if (typeof val === 'object' && Array.isArray(val) && val.length === 0) return '[]'
 
   const { value, type } = val
   if (type === 'compound') {
@@ -31,11 +30,14 @@ function stringify (val) {
       if (_type === 'string') _value = normalizeString(_value)
       str.push(`${_type}:${_value}`)
     }
-    return '{' + str.join(',') + '}'
+    return `{${str.join(',')}}`
   } else if (type === 'list') {
-    const prefix = '' // getArrayPrefix(value.type)
     const arrayElements = getArrayValues(value)
-    return '[' + prefix + arrayElements + ']'
+    return `[${arrayElements}]`
+  } else if (type === 'byteArray' || type === 'intArray' || type === 'longArray') {
+    const prefix = getArrayPrefix(type)
+    const arrayElements = getArrayValues(value)
+    return `[${prefix}${arrayElements}]`
   }
   // circle back, typed arrays aren't implemented
   let str = value + getSuffix(value, type)
@@ -52,11 +54,12 @@ function normalizeString (str) {
 function getArrayValues ({ value: arr, type }) {
   const hasMissingEl = hasMissingElements(arr)
   const str = []
-  for (let i = 0; i < arr.length; i++) {
-    const curr = arr[i]
+  // add nullable length that way [] is pased as []
+  for (let i = 0; i < (arr?.length || 0); i++) {
+    let curr = arr[i]
     if (curr !== undefined) {
-      if (type === 'string') str.push(normalizeString(curr))
-      else if (hasMissingEl) str.push(`${i}:${curr}`)
+      curr = stringify({ value: curr, type })
+      if (hasMissingEl) str.push(`${i}:${curr}`)
       else str.push(curr)
     }
   }
@@ -64,19 +67,19 @@ function getArrayValues ({ value: arr, type }) {
 }
 
 function hasMissingElements (arr) {
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < (arr?.length || 0); i++) {
     if (arr[i] === undefined) return true
   }
   return false
 }
 
-// function getArrayPrefix (type) {
-//   let prefix = ''
-//   if (type === 'long') prefix = 'L;'
-//   else if (type === 'byte') prefix = 'B;'
-//   else if (type === 'int') prefix = 'I;'
-//   return prefix
-// }
+function getArrayPrefix (type) {
+  let prefix = ''
+  if (type === 'longArray') prefix = 'L;'
+  else if (type === 'byteArray') prefix = 'B;'
+  else if (type === 'intArray') prefix = 'I;'
+  return prefix
+}
 
 function getSuffix (val, type) {
   let suffix = ''
@@ -85,17 +88,30 @@ function getSuffix (val, type) {
   return suffix
 }
 
+/**
+ * @description normalizes the input aka makes it the shortest equivalent string
+ * @param {string} str the string of mojangson to normalize
+ * @returns {string} the normalized mojangson
+ */
+
+function normalize (str) {
+  return stringify(parse(str))
+}
+
+function parse (text) {
+  try {
+    const parserNE = new nearley.Parser(nearley.Grammar.fromCompiled(grammar))
+    parserNE.feed(text)
+    return parserNE.results[0]
+  } catch (e) {
+    e.message = `Error parsing text '${text}'`
+    throw e
+  }
+}
+
 module.exports = {
-  parse: (text) => {
-    try {
-      const parserNE = new nearley.Parser(nearley.Grammar.fromCompiled(grammar))
-      parserNE.feed(text)
-      return parserNE.results[0]
-    } catch (e) {
-      e.message = `Error parsing text '${text}'`
-      throw e
-    }
-  },
+  parse,
   simplify,
-  stringify
+  stringify,
+  normalize
 }
