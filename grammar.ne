@@ -67,7 +67,7 @@ function extractArray (d) {
   for (let i in d[3]) {
     output.push(d[3][i][3])
   }
-  return { type: 'list', value: output }
+  return { type: 'list', value: { type: output[0].type, value: output.map(x => x.value) } }
 }
 
 function extractArrayPair (d) {
@@ -76,7 +76,7 @@ function extractArrayPair (d) {
   for (let i in d[3]) {
     extractPair(d[3][i][3], output)
   }
-  return { type: 'list', value: output }
+  return { type: 'list', value: { type: output[0].type, value: output.map(x => x.value) } }
 }
 
 %}

@@ -22,35 +22,32 @@
             },
             "Lore": {
               "type": "list",
-              "value": [
-                {
-                  "type": "compound",
-                  "value": {
+              "value": {
+                "type": "compound",
+                "value": [
+                  {
                     "text": {
                       "value": "MLG PICKAXE DORITOS 420NOSCOPEBLAZEIT",
                       "type": "string"
                     }
-                  }
-                },
-                {
-                  "type": "compound",
-                  "value": {
+                  },
+                  {
                     "text": {
                       "value": "OH BABY A TRIPLE MOM GET THE CAMERA",
                       "type": "string"
                     }
                   }
-                }
-              ]
+                ]
+              }
             }
           }
         },
         "Enchantments": {
           "type": "list",
-          "value": [
-            {
-              "type": "compound",
-              "value": {
+          "value": {
+            "type": "compound",
+            "value": [
+              {
                 "id": {
                   "value": "minecraft:efficiency",
                   "type": "string"
@@ -59,11 +56,8 @@
                   "value": 20,
                   "type": "short"
                 }
-              }
-            },
-            {
-              "type": "compound",
-              "value": {
+              },
+              {
                 "id": {
                   "value": "minecraft:fire_aspect",
                   "type": "string"
@@ -72,11 +66,8 @@
                   "value": 2,
                   "type": "short"
                 }
-              }
-            },
-            {
-              "type": "compound",
-              "value": {
+              },
+              {
                 "id": {
                   "value": "minecraft:fortune",
                   "type": "string"
@@ -85,11 +76,8 @@
                   "value": 10,
                   "type": "short"
                 }
-              }
-            },
-            {
-              "type": "compound",
-              "value": {
+              },
+              {
                 "id": {
                   "value": "minecraft:knockback",
                   "type": "string"
@@ -98,11 +86,8 @@
                   "value": 16959,
                   "type": "short"
                 }
-              }
-            },
-            {
-              "type": "compound",
-              "value": {
+              },
+              {
                 "id": {
                   "value": "minecraft:looting",
                   "type": "string"
@@ -111,11 +96,8 @@
                   "value": 10,
                   "type": "short"
                 }
-              }
-            },
-            {
-              "type": "compound",
-              "value": {
+              },
+              {
                 "id": {
                   "value": "minecraft:sharpness",
                   "type": "string"
@@ -124,11 +106,8 @@
                   "value": 16959,
                   "type": "short"
                 }
-              }
-            },
-            {
-              "type": "compound",
-              "value": {
+              },
+              {
                 "id": {
                   "value": "minecraft:silk_touch",
                   "type": "string"
@@ -137,11 +116,8 @@
                   "value": 1,
                   "type": "short"
                 }
-              }
-            },
-            {
-              "type": "compound",
-              "value": {
+              },
+              {
                 "id": {
                   "value": "minecraft:smite",
                   "type": "string"
@@ -151,8 +127,8 @@
                   "type": "short"
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         "Unbreakable": {
           "value": 1,
@@ -164,10 +140,10 @@
         },
         "AttributeModifiers": {
           "type": "list",
-          "value": [
-            {
-              "type": "compound",
-              "value": {
+          "value": {
+            "type": "compound",
+            "value": [
+              {
                 "Name": {
                   "value": "generic.maxHealth",
                   "type": "string"
@@ -192,11 +168,8 @@
                   "value": 20,
                   "type": "double"
                 }
-              }
-            },
-            {
-              "type": "compound",
-              "value": {
+              },
+              {
                 "Name": {
                   "value": "generic.movementSpeed",
                   "type": "string"
@@ -221,11 +194,8 @@
                   "value": 2,
                   "type": "double"
                 }
-              }
-            },
-            {
-              "type": "compound",
-              "value": {
+              },
+              {
                 "Name": {
                   "value": "generic.knockbackResistance",
                   "type": "string"
@@ -250,11 +220,8 @@
                   "value": 0.2,
                   "type": "double"
                 }
-              }
-            },
-            {
-              "type": "compound",
-              "value": {
+              },
+              {
                 "Name": {
                   "value": "generic.attackDamage",
                   "type": "string"
@@ -280,8 +247,8 @@
                   "type": "double"
                 }
               }
-            }
-          ]
+            ]
+          }
         }
       }
     },
