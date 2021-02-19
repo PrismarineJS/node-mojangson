@@ -17,10 +17,7 @@ function simplify (data) {
   return transform(data.value, data.type)
 }
 
-function stringify (val) {
-  // if (typeof val === 'object' && Array.isArray(val) && val.length === 0) return '[]'
-
-  const { value, type } = val
+function stringify ({ value, type }) {
   if (type === 'compound') {
     const str = []
     const entries = Object.entries(value)
@@ -40,15 +37,14 @@ function stringify (val) {
     const arrayElements = getArrayValues(value)
     return `[${prefix}${arrayElements}]`
   }
-  // circle back, typed arrays aren't implemented
   let str = value + getSuffix(value, type)
   if (type === 'string') str = normalizeString(str)
   return str
 }
+
 function normalizeString (str) {
-  if (/,|:|;/g.test(str)) str = `"${str}"`
-  else if (/"/g.test(str)) str = str.replace(/"/, '\"') // eslint-disable-line
-  else if (str === '') str = '""'
+  if (/"/g.test(str)) str = str.replace(/"/, '\"') // eslint-disable-line
+  if (/^|\|'|{|}|\\|\[|\]|:|;|,/g.test(str) || str === '') str = `"${str}"`
   return str
 }
 
@@ -74,19 +70,11 @@ function hasMissingElements (arr) {
   return false
 }
 
-function getArrayPrefix (type) {
-  let prefix = ''
-  if (type === 'longArray') prefix = 'L;'
-  else if (type === 'byteArray') prefix = 'B;'
-  else if (type === 'intArray') prefix = 'I;'
-  return prefix
-}
+const getArrayPrefix = type => type.charAt(0).toUpperCase() + ';'
 
 function getSuffix (val, type) {
-  let suffix = ''
-  if (type === 'double') suffix = ((val >> 0) === val) ? 'd' : ''
-  else suffix = { int: '', byte: 'b', short: 's', float: 'f', long: 'l', string: '' }[type]
-  return suffix
+  if (type === 'double') return ((val >> 0) === val) ? 'd' : ''
+  return { int: '', byte: 'b', short: 's', float: 'f', long: 'l', string: '' }[type]
 }
 
 /**
