@@ -24,10 +24,19 @@ Usage example :
 
 ```js
 const mojangson = require('mojangson')
-console.log(mojangson.parse('{mykey:myvalue}'))
+
+const data = mojangson.parse('{mykey:myvalue}')
+
+// print the parsed data
+console.log(data)
+
+// print the simplified data
+condole.log(mojangson.simplify(data))
 ```
 
-The provided method mojangson.parse return a javascript object corresponding to the mojangson passed in input.
+The provided method `mojangson.parse` return a javascript object corresponding to the mojangson passed in input.
+
+`mojangson.simplify` returns a simplified representation : keep only the value to remove one level. This loses the types so you cannot use the resulting representation to write it back.
 
 
 ## History
