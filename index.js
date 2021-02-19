@@ -32,7 +32,7 @@ function stringify (val) {
     }
     return `{${str.join(',')}}`
   } else if (type === 'list') {
-    if (!Array.isArray(value)) return '[]'
+    if (!Array.isArray(value.value)) return '[]'
     const arrayElements = getArrayValues(value)
     return `[${arrayElements}]`
   } else if (type === 'byteArray' || type === 'intArray' || type === 'longArray') {
