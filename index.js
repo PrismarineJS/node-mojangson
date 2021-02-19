@@ -17,6 +17,74 @@ function simplify (data) {
   return transform(data.value, data.type)
 }
 
+function stringify (val) {
+  if (typeof val === 'object' && Array.isArray(val) && val.length === 0) return '[]'
+  else if (typeof val === 'object' && Object.keys(val).length === 0) return '{}'
+
+  const { value, type } = val
+  if (type === 'compound') {
+    const str = []
+    const entries = Object.entries(value)
+    for (let i = 0; i < entries.length; i++) {
+      const _type = entries[i][0]
+      let _value = stringify(entries[i][1])
+      if (_type === 'string') _value = normalizeString(_value)
+      str.push(`${_type}:${_value}`)
+    }
+    return '{' + str.join(',') + '}'
+  } else if (type === 'list') {
+    const prefix = '' // getArrayPrefix(value.type)
+    const arrayElements = getArrayValues(value)
+    return '[' + prefix + arrayElements + ']'
+  }
+  // circle back, typed arrays aren't implemented
+  let str = value + getSuffix(value, type)
+  if (type === 'string') str = normalizeString(str)
+  return str
+}
+function normalizeString (str) {
+  if (/,|:|;/g.test(str)) str = `"${str}"`
+  else if (/"/g.test(str)) str = str.replace(/"/, '\"') // eslint-disable-line
+  else if (str === '') str = '""'
+  return str
+}
+
+function getArrayValues ({ value: arr, type }) {
+  const hasMissingEl = hasMissingElements(arr)
+  const str = []
+  for (let i = 0; i < arr.length; i++) {
+    const curr = arr[i]
+    if (curr !== undefined) {
+      if (type === 'string') str.push(normalizeString(curr))
+      else if (hasMissingEl) str.push(`${i}:${curr}`)
+      else str.push(curr)
+    }
+  }
+  return str.join(',')
+}
+
+function hasMissingElements (arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === undefined) return true
+  }
+  return false
+}
+
+// function getArrayPrefix (type) {
+//   let prefix = ''
+//   if (type === 'long') prefix = 'L;'
+//   else if (type === 'byte') prefix = 'B;'
+//   else if (type === 'int') prefix = 'I;'
+//   return prefix
+// }
+
+function getSuffix (val, type) {
+  let suffix = ''
+  if (type === 'double') suffix = ((val >> 0) === val) ? 'd' : ''
+  else suffix = { int: '', byte: 'b', short: 's', float: 'f', long: 'l', string: '' }[type]
+  return suffix
+}
+
 module.exports = {
   parse: (text) => {
     try {
@@ -28,6 +96,6 @@ module.exports = {
       throw e
     }
   },
-
-  simplify
+  simplify,
+  stringify
 }
