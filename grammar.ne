@@ -17,7 +17,7 @@ JARRAY -> "[" _ "]" {% (d) => [] %}
         | "[" _ JVALUE ( _ "," _ JVALUE):* (_ ","):? _ "]" {% extractArray %}
         | "[" _ PAIR ( _ "," _ PAIR):* (_ ","):? _ "]" {% extractArrayPair %}
 
-PAIR -> STRING _ ":" _ JVALUE {% (d) => [d[0], d[4]] %}
+PAIR -> STRING _ ":" _ JVALUE {% (d) => [d[0].value, d[4]] %}
 
 STRING -> "\"" [^\\"]:* "\"" {% (d) => parseValue(d[1].join('')) %}
         | [^\"\'}\]:,\s]:+ {% (d) => parseValue(d[0].join('')) %} 
@@ -28,16 +28,23 @@ STRING -> "\"" [^\\"]:* "\"" {% (d) => parseValue(d[1].join('')) %}
 // It is more efficient to have the parser extract string
 // and post-process it to retrieve numbers
 function parseValue (str) {
-  const suffixes = "bslfdiBSLFDI"
-  const lastC = str.charAt(str.length - 1)
+  const suffixes = "bslfdi"
+  const suffixToType = { 'b': 'byte', 's': 'short', 'l': 'long', 'f': 'float', 'd': 'double', 'i': 'int' }
+  const lastC = str.charAt(str.length - 1).toLowerCase()
   if (suffixes.indexOf(lastC) !== -1) {
     const v = parseFloat(str.substring(0, str.length - 1))
-    if (!isNaN(v)) return v
-    return str
+    if (!isNaN(v)) return { value: v, type: suffixToType[lastC]}
+    return { value: str, type: 'string' }
   }
+  // When no letter is used and Minecraft can't tell the type from context,
+  // it assumes double if there's a decimal point, int if there's no decimal
+  // point and the size fits within 32 bits, or string if neither is true.
+  // https://minecraft.gamepedia.com/Commands#Data_tags
   const v = parseFloat(str)
-  if (!isNaN(v)) return v
-  return str
+  const decimal = str.includes('.')
+  const isInt32 = (v >> 0) === v
+  if (!isNaN(v) && (decimal || isInt32)) return { value: v, type: decimal ? 'double' : 'int'}
+  return { value: str, type: 'string' }
 }
 
 function extractPair(kv, output) {
@@ -52,7 +59,7 @@ function extractObject(d) {
   for (let i in d[3]) {
     extractPair(d[3][i][3], output)
   }
-  return output
+  return { type: 'compound', value: output }
 }
 
 function extractArray (d) {
@@ -60,7 +67,7 @@ function extractArray (d) {
   for (let i in d[3]) {
     output.push(d[3][i][3])
   }
-  return output
+  return { type: 'list', value: { type: output[0].type, value: output.map(x => x.value) } }
 }
 
 function extractArrayPair (d) {
@@ -69,7 +76,7 @@ function extractArrayPair (d) {
   for (let i in d[3]) {
     extractPair(d[3][i][3], output)
   }
-  return output
+  return { type: 'list', value: { type: output[0].type, value: output.map(x => x.value) } }
 }
 
 %}
