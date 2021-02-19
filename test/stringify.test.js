@@ -18,14 +18,17 @@ const data = [
   ['{id:"minecraft:dirt",Damage:0s,Count:1b}', '{id:"minecraft:dirt",Damage:0s,Count:1b}'],
   ['{key:value,}', '{key:value}'],
   ['[0:v1,1:"v2",]', '[v1,v2]'],
-  ['[0:v1,2:v2]', '[v1,v2]'],
+  ['[0:v1,2:v2]', '[0:v1,2:v2]'],
   ['[0:"§6Last Killed: None",1:"§6Last Killer: None",2:"§6Rank: §aNovice-III",3:"§6§6Elo Rating: 1000",]', '["§6Last Killed: None","§6Last Killer: None","§6Rank: §aNovice-III","§6§6Elo Rating: 1000"]'],
   ['{id:1s,Damage:0s,Count:1b,tag:{display:{Name:"§r§6Class: Civilian",Lore:[0:"§6Last Killed: None",1:"§6Last Killer: None",2:"§6Rank: §aNovice-III",3:"§6§6Elo Rating: 1000",],},},}', '{id:1s,Damage:0s,Count:1b,tag:{display:{Name:"§r§6Class: Civilian",Lore:["§6Last Killed: None","§6Last Killer: None","§6Rank: §aNovice-III","§6§6Elo Rating: 1000"]}}}'],
   ['[1,2,3]', '[1,2,3]'],
   ['[1,2,3,]', '[1,2,3]'],
   ['[]', '[]'],
   ['["a","b;"]', '[a,"b;"]'],
-  ['{id:"minecraft:yello[w_shulker_box",Count:1b,tag:{BlockEntityTag:{CustomName:"Stacked Totems",x:0,y:0,z:0,id:"minecraft:shulker_box",Lock:""},display:{Name:"Stacked Totems"}},Damage:0s}', '{id:"minecraft:yello[w_shulker_box",Count:1b,tag:{BlockEntityTag:{CustomName:Stacked Totems,x:0,y:0,z:0,id:"minecraft:shulker_box",Lock:""},display:{Name:Stacked Totems}},Damage:0s}']
+  ['{id:"minecraft:yello[w_shulker_box",Count:1b,tag:{BlockEntityTag:{CustomName:"Stacked Totems",x:0,y:0,z:0,id:"minecraft:shulker_box",Lock:""},display:{Name:"Stacked Totems"}},Damage:0s}', '{id:"minecraft:yello[w_shulker_box",Count:1b,tag:{BlockEntityTag:{CustomName:Stacked Totems,x:0,y:0,z:0,id:"minecraft:shulker_box",Lock:""},display:{Name:Stacked Totems}},Damage:0s}'],
+  ['[B;1b,2b,3b,]', '[B;1b,2b,3b]'],
+  ['[I;1,2,3]', '[I;1,2,3]'],
+  ['[L;1l,2l,3l]', '[L;1l,2l,3l]']
 ]
 
 describe('stringify should be equal', () => {
