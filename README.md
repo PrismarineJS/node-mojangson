@@ -38,6 +38,25 @@ The provided method `mojangson.parse` return a javascript object corresponding t
 
 `mojangson.simplify` returns a simplified representation : keep only the value to remove one level. This loses the types so you cannot use the resulting representation to write it back.
 
+`mojangson.stringify` will take a js object with types and values for mojangson and make it into the a normalized mojangson string
+
+```js
+cosnt mojangson = require('mojangson')
+const data = mojangson.stringify({ type: 'list', value: { type: 'string', value: [ 'z1', 'z2' ] } })
+console.log(data) // => [z1,z2]
+```
+
+Another example, the provided method `mojangson.normalize` takes a string of mojangson and normalizes it in the shortest way to retain all data. This will tell you if you have the shortest equivalent to a string of mojangson.
+
+```js
+const mojangson = require('mojangson')
+const original = '[0:"z1",1:"z2"]'
+const data = mojangson.normalize(original)
+console.log(data) // => [z1,z2]
+const optimized = original === data
+console.log(optimized) // => false
+```
+
 
 ## History
 
