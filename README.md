@@ -46,7 +46,7 @@ const data = mojangson.stringify({ type: 'list', value: { type: 'string', value:
 console.log(data) // => [z1,z2]
 ```
 
-Another example, the provided method `mojangson.normalize` takes a string of mojangson and normalizes it in the shortest way to retain all data. This will tell you if you have the shortest equivalent to a string of mojangson.
+Another example, the provided method `mojangson.normalize` takes a string of mojangson and normalizes it in the shortest way to retain all data. Comparing it to the original will tell you if you have the shortest equivalent to a string of mojangson.
 
 ```js
 const mojangson = require('mojangson')
