@@ -60,6 +60,12 @@ console.log(optimized) // => false
 
 ## History
 
+### 2.0.0
+
+* Changes output format to include types (@Karang)
+* add simplify function
+* Add stringify function to go back to mojangson (@U9G)
+
 ### 1.1.1
 
 * Fix empty string parsing (thanks @IdanHo)
