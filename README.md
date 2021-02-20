@@ -38,7 +38,7 @@ The provided method `mojangson.parse` return a javascript object corresponding t
 
 `mojangson.simplify` returns a simplified representation : keep only the value to remove one level. This loses the types so you cannot use the resulting representation to write it back.
 
-`mojangson.stringify` will take a js object with types and values for mojangson and make it into the a normalized mojangson string
+`mojangson.stringify` will take a js object with types and values for mojangson and make it into a normalized mojangson string
 
 ```js
 cosnt mojangson = require('mojangson')
