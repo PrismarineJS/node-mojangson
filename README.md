@@ -41,7 +41,7 @@ The provided method `mojangson.parse` return a javascript object corresponding t
 `mojangson.stringify` will take a js object with types and values for mojangson and make it into a normalized mojangson string
 
 ```js
-cosnt mojangson = require('mojangson')
+const mojangson = require('mojangson')
 const data = mojangson.stringify({ type: 'list', value: { type: 'string', value: [ 'z1', 'z2' ] } })
 console.log(data) // => [z1,z2]
 ```
@@ -99,4 +99,4 @@ console.log(optimized) // => false
 
 ### 0.1
 
-* First release, basic functionnality
+* First release, basic functionality
