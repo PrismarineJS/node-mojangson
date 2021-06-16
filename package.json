@@ -16,7 +16,7 @@
     "url": "https://github.com/rom1504/node-mojangson/issues"
   },
   "devDependencies": {
-    "mocha": "^8.2.0",
+    "mocha": "^9.0.0",
     "standard": "^16.0.1",
     "prismarine-nbt": "^1.4.0"
   },
