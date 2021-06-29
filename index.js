@@ -44,7 +44,7 @@ function stringify ({ value, type }) {
 
 function normalizeString (str) {
   str = str.replace(/"/g, '\\"')
-  if (/'|{|}|\[|\]|:|;|,| |\(|\)/g.test(str) || str === '') str = `"${str}"`
+  if (/'|{|}|\[|\]|:|;|,|\(|\)/g.test(str) || str === '') str = `"${str}"`
   return str
 }
 
