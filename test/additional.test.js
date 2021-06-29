@@ -4,7 +4,7 @@ const assert = require('assert')
 const fs = require('fs')
 const mojangson = require('../')
 
-const tests = ['test001']
+const tests = ['test001', 'test002']
 
 describe('additional', function () {
   const data = []
