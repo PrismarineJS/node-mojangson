@@ -18,7 +18,7 @@ JARRAY -> "[" _ "]" {% (d) => { return { type: 'list', value: {} } } %}
 
 PAIR -> STRING _ ":" _ JVALUE {% (d) => [d[0].value, d[4]] %}
 
-STRING -> "\"" [^\\"]:* "\"" {% (d) => parseValue(d[1].join('')) %}
+STRING -> "\"" ( [^\\"] | "\\" ["bfnrt\/\\] ):* "\"" {% (d) => parseValue( JSON.parse(d.flat(3).join('')) ) %}
         | [^\"\'}\]:;,\s]:+ {% (d) => parseValue(d[0].join('')) %} 
 
 @{%
