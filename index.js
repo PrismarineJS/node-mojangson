@@ -43,8 +43,8 @@ function stringify ({ value, type }) {
 }
 
 function normalizeString (str) {
-  if (/"/g.test(str)) str = str.replace(/"/, '\"') // eslint-disable-line
-  if (/'|{|}|\[|\]|:|;|,/g.test(str) || str === '') str = `"${str}"`
+  str = str.replace(/"/g, '\\"')
+  if (/'|{|}|\[|\]|:|;|,| |\(|\)/g.test(str) || str === '') str = `"${str}"`
   return str
 }
 
