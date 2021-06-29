@@ -60,6 +60,12 @@ console.log(optimized) // => false
 
 ## History
 
+### 2.0.1
+
+* fix escaping some chars in mojangson.stringify (@U9G)
+* update grammar for unicode escaped strings (@U9G)
+* fix parsing of escaped characters (@Majorblake)
+
 ### 2.0.0
 
 * Changes output format to include types (@Karang)
