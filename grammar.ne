@@ -44,7 +44,7 @@ function parseValue (str) {
   const v = parseFloat(str)
   const decimal = str.includes('.')
   const isInt32 = (v >> 0) === v
-  if (!isNaN(v) && (decimal || isInt32)) return { value: v, type: decimal ? 'double' : 'int'}
+  if (!isNaN(str) && (decimal || isInt32)) return { value: v, type: decimal ? 'double' : 'int'}
   return { value: str, type: 'string' }
 }
 
