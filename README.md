@@ -60,6 +60,10 @@ console.log(optimized) // => false
 
 ## History
 
+### 2.0.2
+
+* fixes issue where strings starting with a number would be parsed as a number (@U9G)
+
 ### 2.0.1
 
 * fix escaping some chars in mojangson.stringify (@U9G)
