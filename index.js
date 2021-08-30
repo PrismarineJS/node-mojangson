@@ -44,8 +44,7 @@ function stringify ({ value, type }) {
 
 function normalizeString (str) {
   str = str.replace(/"/g, '\\"')
-  if (/'|{|}|\[|\]|:|;|,|\(|\)/g.test(str) || str === '') str = `"${str}"`
-  return str
+  return `"${str}"`
 }
 
 function getArrayValues ({ value: arr, type }) {
