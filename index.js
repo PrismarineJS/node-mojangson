@@ -22,10 +22,9 @@ function stringify ({ value, type }) {
     const str = []
     const entries = Object.entries(value)
     for (let i = 0; i < entries.length; i++) {
-      const _type = entries[i][0]
-      let _value = stringify(entries[i][1])
-      if (_type === 'string') _value = normalizeString(_value)
-      str.push(`${_type}:${_value}`)
+      const _key = normalizeString(entries[i][0])
+      const _value = stringify(entries[i][1])
+      str.push(`${_key}:${_value}`)
     }
     return `{${str.join(',')}}`
   } else if (type === 'list') {
@@ -44,7 +43,7 @@ function stringify ({ value, type }) {
 
 function normalizeString (str) {
   str = str.replace(/"/g, '\\"')
-  if (/'|{|}|\[|\]|:|;|,|\(|\)|§|=/g.test(str) || str === '') str = `"${str}"`
+  if (/[^0-9A-Za-z_\-.+]/.test(str) || str === '') str = `"${str}"`
   return str
 }
 
