@@ -1,10 +1,10 @@
 declare module "mojangson" {
 	interface MojangsonEntry {
-		value: object;
+		value: any;
 		type: string;
 	}
-	function simplify(data: object): object;
+	function simplify(data: MojangsonEntry): any;
 	function stringify({ value, type }: MojangsonEntry, quotes?: boolean): string;
-	function parse(text: string): object;
+	function parse(text: string): MojangsonEntry;
 	function normalize(str: string, quotes?: boolean): string;
 }
