@@ -11,8 +11,18 @@ describe('Always use quotes for names and strings', () => {
     '{"SomeField":"кириллиц А"}',
     '{"AField":"\\""}'
   ].forEach(s => {
-    it('sould be unchanged', () => {
+    it('sould remain unchanged', () => {
       assert.strictEqual(mojangson.stringify(mojangson.parse(s), true), s)
+    })
+  });
+  // Formatting tests
+  [
+    ['{var: value1, var1:123b, "var2":value3, "var3": "value4"}', '{"var":"value1","var1":123b,"var2":"value3","var3":"value4"}'],
+    ['{SomeField: кириллицА}', '{"SomeField":"кириллицА"}'],
+    ['{AField: "\\""}', '{"AField":"\\""}']
+  ].forEach(([input, expected]) => {
+    it('sould be equal', () => {
+      assert.strictEqual(mojangson.stringify(mojangson.parse(input), true), expected)
     })
   })
 })
