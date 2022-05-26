@@ -26,5 +26,8 @@ module.exports = [
   ['[I;1,2,3]', '[I;1,2,3]'],
   ['[L;1l,2l,3l]', '[L;1l,2l,3l]'],
   ['{id:"§a"}', '{id:"§a"}'],
-  ['{id:"a="}', '{id:"a="}']
+  ['{id:"a="}', '{id:"a="}'],
+  ['{"§akey":"§2value"}', '{"§akey":"§2value"}'],
+  ['"ሴ"', '"ሴ"']
+  ['{string:"§aTesting"}', '{string:"§aTesting"}']
 ]
