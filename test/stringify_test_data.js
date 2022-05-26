@@ -28,6 +28,6 @@ module.exports = [
   ['{id:"§a"}', '{id:"§a"}'],
   ['{id:"a="}', '{id:"a="}'],
   ['{"§akey":"§2value"}', '{"§akey":"§2value"}'],
-  ['"ሴ"', '"ሴ"']
+  ['"ሴ"', '"ሴ"'],
   ['{string:"§aTesting"}', '{string:"§aTesting"}']
 ]
