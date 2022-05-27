@@ -1,4 +1,4 @@
-declare module "mojangson" {
+declare module "@foresteam/mojangson" {
 	interface MojangsonEntry {
 		value: any;
 		type: string;
