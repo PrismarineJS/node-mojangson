@@ -1,12 +1,12 @@
 {
-  "name": "foresteam/mojangson",
+  "name": "@foresteam/mojangson",
   "version": "2.0.3",
-  "description": "A mojangson parser written in node.js",
+  "description": "A mojangson parser written in node.js (fork)",
   "main": "index.js",
   "types": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git://github.com/rom1504/node-mojangson.git"
+    "url": "https://github.com/Foresteam/node-mojangson.git"
   },
   "keywords": [
     "mojangson"
