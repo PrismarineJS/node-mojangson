@@ -1,4 +1,4 @@
-declare module "@foresteam/mojangson" {
+declare module "mojangson" {
 	type MojangsonNumericType = 'byte' | 'short' | 'long' | 'float' | 'double' | 'int';
 	type MojangsonArrayElementType = 'byte' | 'int' | 'long';
 	type MojangsonElementaryType = 'string' | 'boolean' | MojangsonNumericType;
