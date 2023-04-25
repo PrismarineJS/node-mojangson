@@ -7,7 +7,6 @@ describe('test mojangson.simplify', () => {
   data.forEach(entry => {
     it('should be equal', () => {
       const results = mojangson.simplify(mojangson.parse(entry[0]))
-      console.log(entry[0], results, entry[1])
       assert.deepStrictEqual(results, entry[1])
     })
   })
