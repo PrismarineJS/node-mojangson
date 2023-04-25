@@ -6,6 +6,7 @@ const mojangson = require('../')
 describe('mojangson', function () {
   const data = [
     ['{}', { type: 'compound', value: {} }],
+    ['{EmptyArray: []}', { type: 'compound', value: { EmptyArray: { type: 'list', value: {} } } }],
     ['{key:value}', { type: 'compound', value: { key: { value: 'value', type: 'string' } } }],
     ['{key:"value"}', { type: 'compound', value: { key: { value: 'value', type: 'string' } } }],
     ['{key:"va,lue"}', { type: 'compound', value: { key: { value: 'va,lue', type: 'string' } } }],
