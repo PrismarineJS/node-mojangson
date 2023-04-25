@@ -9,7 +9,6 @@ function simplify (data) {
         return acc
       }, {})
     }
-    console.log(type)
     if (type === 'list' || type === 'byteArray' || type === 'intArray' || type === 'longArray') {
       if (!Array.isArray(value.value)) return []
       return value.value.map(function (v) { return transform(v, value.type) })
