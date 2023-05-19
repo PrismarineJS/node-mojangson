@@ -34,7 +34,9 @@ describe('mojangson', function () {
     ['{text:"This string contains escaped characters: \\" \\b \\f \\n \\r \\t \\/ \\\\"}', { type: 'compound', value: { text: { type: 'string', value: 'This string contains escaped characters: " \b \f \n \r \t / \\' } } }],
     ['{id:"minecraft:nether_star",Count:1b,display:{Name:"§7the Player Rank \\"§f§lI§f§7\\"!"},Damage:0s}', { type: 'compound', value: { id: { value: 'minecraft:nether_star', type: 'string' }, Count: { value: 1, type: 'byte' }, display: { type: 'compound', value: { Name: { value: '§7the Player Rank "§f§lI§f§7"!', type: 'string' } } }, Damage: { value: 0, type: 'short' } } }],
     ['{display:{Name:"New Mob"},SkullOwner:{Id:"8987f87a-6c6b-4e87-8322-ce70957b6272",Properties:{textures:[{Value:"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2VmNWY5ODY0YjM2MmI5ZWVjY2YxYWI5ZjE3YTI2NDc1OWJhMjgwZmI2NTJiZDgzZWNjMDAwNWFkMjk2ZmYzYyJ9fX0="}]}}}', { type: 'compound', value: { display: { type: 'compound', value: { Name: { value: 'New Mob', type: 'string' } } }, SkullOwner: { type: 'compound', value: { Id: { value: '8987f87a-6c6b-4e87-8322-ce70957b6272', type: 'string' }, Properties: { type: 'compound', value: { textures: { type: 'list', value: { type: 'compound', value: [{ Value: { value: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2VmNWY5ODY0YjM2MmI5ZWVjY2YxYWI5ZjE3YTI2NDc1OWJhMjgwZmI2NTJiZDgzZWNjMDAwNWFkMjk2ZmYzYyJ9fX0=', type: 'string' } }] } } } } } } } }],
-    ['"\n"', { type: 'string', value: '\n' }]
+    ['"\n"', { type: 'string', value: '\n' }],
+    ['{Name:"[{"text":"something"}]"}', { type: 'compound', value: { Name: { value: '{text:Ur mom}', type: 'string' } } }],
+    ['{\nName: "text"\n}', { type: 'compound', value: { Name: { value: 'text', type: 'string' } } }]
   ]
   data.forEach(function (a) {
     it('should be equal', function () {
