@@ -9,8 +9,7 @@ function simplify (data) {
         return acc
       }, {})
     }
-    if (type === 'list' || type === 'byteArray' || type === 'intArray' || type === 'longArray') {
-      if (!Array.isArray(value.value)) return []
+    if (type === 'list') {
       return value.value.map(function (v) { return transform(v, value.type) })
     }
     return value
