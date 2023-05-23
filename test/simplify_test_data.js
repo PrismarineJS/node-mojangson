@@ -46,9 +46,10 @@ module.exports = [
     },
     Damage: 0
   }],
-  ['[B;1b,2b,3b,]', [1, 2, 3]],
-  ['[I;1,2,3]', [1, 2, 3]],
-  ['[L;1l,2l,3l]', [1, 2, 3]],
+  //TODO Is not being simplified, see PR https://github.com/
+  ['[B;1b,2b,3b,]', { type: 'byte', value: [1, 2, 3] }],
+  ['[I;1,2,3]', { type: 'int', value: [1, 2, 3] }],
+  ['[L;1l,2l,3l]', { type: 'long', value: [1, 2, 3] }],
   ['{id:"§a"}', { id: '§a' }],
   ['{id:"a="}', { id: 'a=' }]
 ]
