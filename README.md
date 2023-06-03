@@ -60,6 +60,11 @@ console.log(optimized) // => false
 
 ## History
 
+### 2.0.3
+
+* Fix simplifying of arrays throwing error (@Lianecx)
+* Escape new lines in text (@U9G)
+
 ### 2.0.2
 
 * fixes issue where strings starting with a number would be parsed as a number (@U9G)
