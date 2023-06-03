@@ -10,6 +10,7 @@ function simplify (data) {
       }, {})
     }
     if (type === 'list') {
+      if (!Array.isArray(value.value)) return []
       return value.value.map(function (v) { return transform(v, value.type) })
     }
     return value
