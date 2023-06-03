@@ -60,6 +60,10 @@ console.log(optimized) // => false
 
 ## History
 
+### 2.0.4
+
+* fix publish
+
 ### 2.0.3
 
 * Fix simplifying of arrays throwing error (@Lianecx)
