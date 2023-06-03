@@ -18,45 +18,46 @@ function simplify (data) {
   return transform(data.value, data.type)
 }
 
-function stringify ({ value, type }) {
+function stringify ({ value, type }, quotes = false) {
   if (type === 'compound') {
     const str = []
     const entries = Object.entries(value)
     for (let i = 0; i < entries.length; i++) {
       const _type = entries[i][0]
-      let _value = stringify(entries[i][1])
-      if (_type === 'string') _value = normalizeString(_value)
-      str.push(`${_type}:${_value}`)
+      let _value = stringify(entries[i][1], quotes)
+      if (_type === 'string') _value = normalizeString(_value, quotes)
+      if (quotes) { str.push(`"${_type}":${_value}`) } else { str.push(`${_type}:${_value}`) }
     }
     return `{${str.join(',')}}`
   } else if (type === 'list') {
     if (!Array.isArray(value.value)) return '[]'
-    const arrayElements = getArrayValues(value)
+    const arrayElements = getArrayValues(value, quotes)
     return `[${arrayElements}]`
   } else if (type === 'byteArray' || type === 'intArray' || type === 'longArray') {
     const prefix = getArrayPrefix(type)
-    const arrayElements = getArrayValues(value)
+    const arrayElements = getArrayValues(value, quotes)
     return `[${prefix}${arrayElements}]`
   }
   let str = value + getSuffix(value, type)
-  if (type === 'string') str = normalizeString(str)
+  if (type === 'string') str = normalizeString(str, quotes)
   return str
 }
 
-function normalizeString (str) {
+function normalizeString (str, quotes) {
   str = str.replace(/"/g, '\\"')
   if (/'|{|}|\[|\]|:|;|,|\(|\)|§|=/g.test(str) || str === '') str = `"${str}"`
+  if (quotes && !str.startsWith('"')) { str = `"${str}"` }
   return str
 }
 
-function getArrayValues ({ value: arr, type }) {
+function getArrayValues ({ value: arr, type }, quotes) {
   const hasMissingEl = hasMissingElements(arr)
   const str = []
   // add nullable length that way [] is pased as []
   for (let i = 0; i < arr.length; i++) {
     let curr = arr[i]
     if (curr !== undefined) {
-      curr = stringify({ value: curr, type })
+      curr = stringify({ value: curr, type }, quotes)
       if (hasMissingEl) str.push(`${i}:${curr}`)
       else str.push(curr)
     }
@@ -84,8 +85,8 @@ function getSuffix (val, type) {
  * @returns {string} the normalized mojangson
  */
 
-function normalize (str) {
-  return stringify(parse(str))
+function normalize (str, quotes = false) {
+  return stringify(parse(str), quotes)
 }
 
 function parse (text) {
