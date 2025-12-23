@@ -46,7 +46,7 @@ module.exports = [
     },
     Damage: 0
   }],
-  // Int, Long and Byte arrays should be simplified to plain arrays
+  // int, long and byte arrays should be simplified to plain arrays
   ['[B;1b,2b,3b,]', [1, 2, 3]],
   ['[I;1,2,3]', [1, 2, 3]],
   ['[L;1l,2l,3l]', [1, 2, 3]],
