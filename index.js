@@ -92,11 +92,66 @@ function parse (text) {
   try {
     const parserNE = new nearley.Parser(nearley.Grammar.fromCompiled(grammar))
     parserNE.feed(text)
-    return parserNE.results[0]
+    // When there are multiple parse results (ambiguous grammar),
+    // prefer results with more structured types (compound, list) over strings
+    const results = parserNE.results
+    if (results.length > 1) {
+      // Score each result based on how "structured" it is
+      const scored = results.map((r, i) => {
+        const score = scoreResult(r)
+        return { result: r, score }
+      })
+      // Sort by score descending (higher score = more structured)
+      scored.sort((a, b) => b.score - a.score)
+      return scored[0].result
+    }
+    return results[0]
   } catch (e) {
     e.message = `Error parsing text '${text}'`
     throw e
   }
+}
+
+function scoreResult (obj) {
+  let score = 0
+  if (!obj || typeof obj !== 'object') return score
+
+  // Prefer compound and list types over string types
+  if (obj.type === 'compound') score += 10
+  if (obj.type === 'list') score += 10
+  if (obj.type === 'string') score -= 1
+
+  // Recursively score nested structures
+  if (obj.value && typeof obj.value === 'object') {
+    if (Array.isArray(obj.value)) {
+      obj.value.forEach(item => {
+        score += scoreResult(item)
+      })
+    } else if (obj.value.value && Array.isArray(obj.value.value)) {
+      // This is a list type with value.value array
+      // The items in this array are raw values, not wrapped in { type, value }
+      // Score based on whether items are objects (compounds) vs primitives
+      obj.value.value.forEach(item => {
+        if (item && typeof item === 'object' && !Array.isArray(item)) {
+          // This is likely a compound object
+          score += 10
+          // Recursively score the object's properties
+          Object.values(item).forEach(prop => {
+            score += scoreResult(prop)
+          })
+        } else if (typeof item === 'string') {
+          score -= 1
+        }
+      })
+    } else {
+      // This is a compound with nested values
+      Object.values(obj.value).forEach(item => {
+        score += scoreResult(item)
+      })
+    }
+  }
+
+  return score
 }
 
 module.exports = {

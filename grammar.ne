@@ -6,6 +6,7 @@ JVALUE -> JOBJECT {% (d) => d[0] %}
         | "'" _ JOBJECT _ "'" {% (d) => d[2] %}
         | JARRAY  {% (d) => d[0] %}
         | STRING  {% (d) => d[0] %}
+        | SINGLE_QUOTED_STRING {% (d) => d[0] %}
         | "null"  {% (d) => null %}
 
 JOBJECT -> "{" _ "}" {% (d) => { return { type: 'compound', value: {} } } %}
@@ -20,6 +21,8 @@ PAIR -> STRING _ ":" _ JVALUE {% (d) => [d[0].value, d[4]] %}
 
 STRING -> "\"" ( [^\\"] | "\\" ["bfnrt\/\\] | "\\u" [a-fA-F0-9] [a-fA-F0-9] [a-fA-F0-9] [a-fA-F0-9] ):* "\"" {% (d) => parseValue( JSON.parse(d.flat(3).map(b => b.replace('\n', '\\n')).join('')) ) %}
         | [^\"\'}\]:;,\s]:+ {% (d) => parseValue(d[0].join('')) %}
+
+SINGLE_QUOTED_STRING -> "'" ( [^\\'] | "\\" ["bfnrt\/\\'] | "\\u" [a-fA-F0-9] [a-fA-F0-9] [a-fA-F0-9] [a-fA-F0-9] ):* "'" {% (d) => parseSingleQuoteString(d) %}
 
 @{%
 
@@ -46,6 +49,38 @@ function parseValue (str) {
   const isInt32 = (v >> 0) === v
   if (!isNaN(str) && (decimal || isInt32)) return { value: v, type: decimal ? 'double' : 'int'}
   return { value: str, type: 'string' }
+}
+
+function parseSingleQuoteString(d) {
+  // Build the string content from the parsed parts similar to double-quoted strings
+  // The structure is: ["'", [content parts], "'"]
+  // d[1] contains the content between quotes
+  const content = d[1] || []
+  let str = "'"
+  for (const part of content) {
+    if (Array.isArray(part)) {
+      str += part.flat().join('')
+    } else if (part) {
+      str += part
+    }
+  }
+  str += "'"
+  
+  // Process escape sequences to convert to actual string value
+  // Replace escaped single quotes with actual single quotes
+  // and handle other escape sequences
+  str = str.replace(/\\'/g, "\\'")  // Keep escaped single quotes for JSON parsing
+           .replace(/\\"/g, '\\"')   // Keep escaped double quotes
+  
+  // Convert to a JSON-compatible string by replacing outer single quotes with double quotes
+  str = '"' + str.slice(1, -1).replace(/"/g, '\\"').replace(/\\'/g, "'") + '"'
+  
+  try {
+    return { value: JSON.parse(str), type: 'string' }
+  } catch (e) {
+    // If JSON parsing fails, return the raw string content
+    return { value: str.slice(1, -1), type: 'string' }
+  }
 }
 
 function extractPair(kv, output) {
