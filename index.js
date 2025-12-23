@@ -13,6 +13,9 @@ function simplify (data) {
       if (!Array.isArray(value.value)) return []
       return value.value.map(function (v) { return transform(v, value.type) })
     }
+    if (type === 'byteArray' || type === 'intArray' || type === 'longArray') {
+      return value.value
+    }
     return value
   }
   return transform(data.value, data.type)
