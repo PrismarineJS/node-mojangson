@@ -10,7 +10,7 @@ JVALUE -> JOBJECT {% (d) => d[0] %}
         | "null"  {% (d) => null %}
 
 JOBJECT -> "{" _ "}" {% (d) => { return { type: 'compound', value: {} } } %}
-         | "{" _ PAIR ( _ "," _ PAIR):* (_ ","):? "}" {% extractObject %}
+         | "{" _ PAIR ( _ "," _ PAIR):* (_ ","):? _ "}" {% extractObject %}
 
 JARRAY -> "[" _ "]" {% (d) => { return { type: 'list', value: {} } } %}
         | "[" _ [BIL] _ ";" _ JVALUE ( _ "," _ JVALUE):* (_ ","):? _ "]" {% extractTypedArray %}
