@@ -42,7 +42,11 @@ describe('mojangson', function () {
     ['{key:\'va,lue\'}', { type: 'compound', value: { key: { value: 'va,lue', type: 'string' } } }],
     ["'hello world'", { value: 'hello world', type: 'string' }],
     ["'{}'", { type: 'compound', value: {} }],
-    ["'{key:value}'", { type: 'compound', value: { key: { value: 'value', type: 'string' } } }]
+    ["'{key:value}'", { type: 'compound', value: { key: { value: 'value', type: 'string' } } }],
+    // Test cases for whitespace before closing braces (issue fix)
+    ['{key:value }', { type: 'compound', value: { key: { value: 'value', type: 'string' } } }],
+    ['{key:value  }', { type: 'compound', value: { key: { value: 'value', type: 'string' } } }],
+    ['{Items:[{Slot:0b,id:"minecraft:oak_log",Count:32b},{Slot:1b,id:"minecraft:oak_sapling",Count:8b}] }', { type: 'compound', value: { Items: { type: 'list', value: { type: 'compound', value: [{ Slot: { value: 0, type: 'byte' }, id: { value: 'minecraft:oak_log', type: 'string' }, Count: { value: 32, type: 'byte' } }, { Slot: { value: 1, type: 'byte' }, id: { value: 'minecraft:oak_sapling', type: 'string' }, Count: { value: 8, type: 'byte' } }] } } } }]
   ]
   data.forEach(function (a) {
     it('should be equal', function () {
