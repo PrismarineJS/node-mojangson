@@ -61,15 +61,10 @@ console.log(optimized) // => false
 ## History
 
 ### 2.1.0
-* [Add repo commands workflow (#61)](https://github.com/PrismarineJS/node-mojangson/commit/4f1550cc554035783a5ea8329b9a9bb8078368a6) (thanks @rom1504)
-* [Update CI to Node 24 (#60)](https://github.com/PrismarineJS/node-mojangson/commit/2d9584e6620bd51120e7ac65e8f68a271d45efc6) (thanks @rom1504)
 * [Fix parser failure on whitespace before closing brace (#57)](https://github.com/PrismarineJS/node-mojangson/commit/e107e605553de62301002ac5d6b8575f5647a4ca) (thanks @Copilot)
-* [Fix publish condition for npm-publish v4 (#59)](https://github.com/PrismarineJS/node-mojangson/commit/5ed79177aee12c8906b251fa59219faa0e9eb3b0) (thanks @rom1504)
-* [Switch to trusted publishing via OIDC (#58)](https://github.com/PrismarineJS/node-mojangson/commit/228bd9dfed55eb45e01f722a7ca65f6788706753) (thanks @rom1504)
 * [Fix simplify() to fully unwrap byteArray, intArray, and longArray (#54)](https://github.com/PrismarineJS/node-mojangson/commit/7482d623c9199bf8a582fb723d1d598d4feba938) (thanks @Copilot)
 * [Add support for single-quoted strings in mojangson parser (#53)](https://github.com/PrismarineJS/node-mojangson/commit/fa153c7b626f51303810fde805d3f62a14974a98) (thanks @Copilot)
 * [node 22 (#51)](https://github.com/PrismarineJS/node-mojangson/commit/8526165d95483002dbcdab09391196a0a3a1a543) (thanks @rom1504)
-* [Bump mocha from 10.8.2 to 11.0.1 (#50)](https://github.com/PrismarineJS/node-mojangson/commit/d4febe50dd004df5a5cff56d5b25e4937333c471) (thanks @dependabot[bot])
 
 ### 2.0.4
 
