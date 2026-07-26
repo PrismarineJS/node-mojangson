@@ -60,6 +60,12 @@ console.log(optimized) // => false
 
 ## History
 
+### 2.1.0
+* [Fix parser failure on whitespace before closing brace (#57)](https://github.com/PrismarineJS/node-mojangson/commit/e107e605553de62301002ac5d6b8575f5647a4ca) (thanks @Copilot)
+* [Fix simplify() to fully unwrap byteArray, intArray, and longArray (#54)](https://github.com/PrismarineJS/node-mojangson/commit/7482d623c9199bf8a582fb723d1d598d4feba938) (thanks @Copilot)
+* [Add support for single-quoted strings in mojangson parser (#53)](https://github.com/PrismarineJS/node-mojangson/commit/fa153c7b626f51303810fde805d3f62a14974a98) (thanks @Copilot)
+* [node 22 (#51)](https://github.com/PrismarineJS/node-mojangson/commit/8526165d95483002dbcdab09391196a0a3a1a543) (thanks @rom1504)
+
 ### 2.0.4
 
 * fix publish
