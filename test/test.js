@@ -43,6 +43,13 @@ describe('mojangson', function () {
     ["'hello world'", { value: 'hello world', type: 'string' }],
     ["'{}'", { type: 'compound', value: {} }],
     ["'{key:value}'", { type: 'compound', value: { key: { value: 'value', type: 'string' } } }],
+    // Single-quoted keys (issue #63)
+    ["{'key':'value'}", { type: 'compound', value: { key: { value: 'value', type: 'string' } } }],
+    ["{'key':\"value\"}", { type: 'compound', value: { key: { value: 'value', type: 'string' } } }],
+    ["{'a':1,\"b\":2}", { type: 'compound', value: { a: { value: 1, type: 'int' }, b: { value: 2, type: 'int' } } }],
+    ["{'my key':'v'}", { type: 'compound', value: { 'my key': { value: 'v', type: 'string' } } }],
+    ["{'minecraft:id':'x'}", { type: 'compound', value: { 'minecraft:id': { value: 'x', type: 'string' } } }],
+    ["{'outer':{'inner':'v'}}", { type: 'compound', value: { outer: { type: 'compound', value: { inner: { value: 'v', type: 'string' } } } } }],
     // Test cases for whitespace before closing braces (issue fix)
     ['{key:value }', { type: 'compound', value: { key: { value: 'value', type: 'string' } } }],
     ['{key:value  }', { type: 'compound', value: { key: { value: 'value', type: 'string' } } }],
