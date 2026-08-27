@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/rom1504/node-mojangson.git"
+    "url": "git+https://github.com/PrismarineJS/node-mojangson.git"
   },
   "keywords": [
     "mojangson"
@@ -13,7 +13,7 @@
   "author": "Romain Beaumont <romain.rom1@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rom1504/node-mojangson/issues"
+    "url": "https://github.com/PrismarineJS/node-mojangson/issues"
   },
   "devDependencies": {
     "mocha": "^11.0.1",
